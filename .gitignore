@@ -1,6 +1,6 @@
-bin/**
-lib/**
-lib64/**
-share/**
-qualia/**
+bin/
+lib/
+lib64/
+share/
+qualia/
 pyenv.cfg
