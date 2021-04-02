@@ -11,13 +11,13 @@ import time
 import dill as pickle
 import hnswlib
 import numpy as np
-import mysql.connector
+# import mysql.connector
 from datetime import datetime
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.stem.porter import PorterStemmer
 
-from transformer import Model
+from embedding_model import Model
 
 
 
@@ -25,8 +25,15 @@ from transformer import Model
 PATHS COMMON TO THE TRAINING AND CLUSTER PREP SCRIPTS:
 """
 # MODEL_DIR       = '/work/paptronics/model/v9/'
-MODEL_DIR       = '/mnt/z/Project/semantic_search/qualia/model/v8/'
+MODEL_DIR       = '/mnt/z/Project/semantic_search/qualia/model/v1/'
+INDEX_DIR       = MODEL_DIR+'hnsw_index/'
 TRAIN_DATA      = '/mnt/z/Project/semantic_search/qualia/data/train/'
+# Default params:
+EMB_DIM            = 768 #1000
+MAX_NEAREST_NBRS   = 30
+MAX_SEARCH_THREADS = -1
+INDEX_SIZE_PATH    = INDEX_DIR+'hnsw_curr_index_size.pkl'
+
 
 SVD_FNAME       = 'svd2000_v8.pkl'
 
@@ -36,11 +43,6 @@ MODEL_FILE_NAME = 'tfidf_vec_ngrams3_mindf5_full_dataset_balanced_sublin_tf_v8.p
 MATX_FILE_NAME  = 'tfidf_matx_ngrams3_mindf5_full_dataset_balanced_sublin_tf_v8.pkl'
 UNIQ_IDS        = 'tfidf_matx_ngrams3_mindf5_ids_full_dataset_balanced_sublin_tf_v8.pkl'
 
-# Default params:
-EMB_DIM            = 768 #1000
-MAX_NEAREST_NBRS   = 30
-MAX_SEARCH_THREADS = -1
-INDEX_SIZE_PATH    = 'hnsw_curr_index_size_v8.pkl'
 
 
 # Index files
