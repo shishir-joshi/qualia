@@ -1,0 +1,11 @@
+TODO
+====
+
+1. Make Data Ingestors
+2. Make better demo notebook
+3. Make arXiv specific ranking scheme:
+    i. Split text into sentences
+    ii. Insert new sentences with keys like doc_id_sentence_id
+    iii. make new key <-> doc mapping
+    iv. Rank which doc comes up most in top K results as best match
+4. MAKE BETTER README
