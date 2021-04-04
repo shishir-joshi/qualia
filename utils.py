@@ -25,15 +25,15 @@ from embedding_model import Model
 PATHS COMMON TO THE TRAINING AND CLUSTER PREP SCRIPTS:
 """
 # MODEL_DIR       = '/work/paptronics/model/v9/'
-MODEL_DIR       = '/mnt/z/Project/semantic_search/qualia/model/v1/'
+MODEL_DIR       = 'model/v1/'
 INDEX_DIR       = MODEL_DIR+'hnsw_index/'
-TRAIN_DATA      = '/mnt/z/Project/semantic_search/qualia/data/train/'
+TRAIN_DATA      = 'data/train/'
 # Default params:
 EMB_DIM            = 768 #1000
 MAX_NEAREST_NBRS   = 30
 MAX_SEARCH_THREADS = -1
 INDEX_SIZE_PATH    = INDEX_DIR+'hnsw_curr_index_size.pkl'
-
+SAMPLE_DATASET = 'data/arxivData.json'
 
 SVD_FNAME       = 'svd2000_v8.pkl'
 
@@ -52,10 +52,6 @@ TMP_INDEX_SAVE_FILE = 'tmp_hnsw_index.bin'   #<-- New save
 INDEX_SAVE_FILE = 'hnsw_index.bin'   #<-- Current one
 INDEX_SAVE_FILE_1 = 'hnsw_index.bin'   #<-- Backup n-1
 INDEX_SAVE_FILE_2 = 'hnsw_index.bin'   #<-- Backup n-2
-
-
-#TODO: temp, ideally you shouldnt have an external mapping, your index needs to only have db uniq ids
-label_text_mapping_file = MODEL_DIR + 'label_text_mapping.pkl'
 
 def create_logger(name, log_dir, filename, level, log_to_console=False):
     LOG_FILENAME = log_dir+filename
@@ -77,32 +73,3 @@ def create_logger(name, log_dir, filename, level, log_to_console=False):
         # add the handlers to logger
         logger.addHandler(ch)
     return logger
-
-def load_model():
-    MODEL = Model()
-    MODEL.make()
-    return MODEL
-
-def load_svd():
-    # Load SVD
-    with open(MODEL_DIR+SVD_FNAME, 'rb') as f:
-        svd = pickle.load(f)
-    return svd
-
-def load_index():
-    p = hnswlib.Index(space='cosine', dim=EMB_DIM)
-    p.load_index(MODEL_DIR+INDEX_SAVE_FILE)
-    p.set_ef(200)
-    return p
-
-def load_search_engine_components():
-    mod = load_model()
-    # svd = load_svd()
-    ind = load_index()
-    return mod, ind
-
-def load_connection_engine():
-    cnx = mysql.connector.connect(user='qbsdbuser', password='f1901cd0',
-                                host='94.237.31.125',
-                                database='qbs')
-    return cnx

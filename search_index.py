@@ -71,7 +71,6 @@ class Index():
     def _batch(self, iterable1, iterable2, n=1):
         l1 = iterable1.shape[0]
         l2 = iterable2.shape[0]
-        print(l1, l2)
         assert l1 == l2
         # print("LEN OF ITER", l)
         for ndx in range(0, l1, n):
@@ -121,7 +120,6 @@ class Index():
             self.index.add_items(data=d,
                                  ids=dl,
                                  num_threads=self.num_threads)
-            print(f"Adding keys to update list")
             update_list.extend(dl)
 
         print(f"Saving new index of size {self.index.get_current_count()}")
@@ -138,8 +136,6 @@ class Index():
             print("Index Not Loaded, please run init_search() first")
             return False
 
-        # vec = vectorizer.transform([query])
-        # vec = [svd.transform(x.A)[0] for x in vec]
         labels, distances = self.index.knn_query(list(query_vector),
                                                  k=max_nearest_nbrs,
                                                  num_threads=self.num_threads)
@@ -168,6 +164,5 @@ class Index():
             ef_construction: {self.ef_construction},
             item_batch_size: {self.item_batch_size},
             num_threads: {self.num_threads},
-            num_elements: {self.num_elements},
             index_loaded: {self.index_loaded}
         """  
