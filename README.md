@@ -1,5 +1,6 @@
 # qualia
-Online Real Time Semantic Search using Transformers and HNSW nearest neighbour search
+Online Real Time Semantic Search using Transformers and HNSW nearest neighbour search.
+
 Uses Sentence Transformers (https://github.com/UKPLab/sentence-transformers) as embedding model
 and HNSWlib (https://github.com/nmslib/hnswlib) as approximate nearest neighbour search index based on cosine similarity.
 
