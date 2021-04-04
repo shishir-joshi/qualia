@@ -8,3 +8,4 @@ TODO
 2. Make better demo notebook
 3. Make arXiv specific ranking scheme
 4. MAKE BETTER README
+5. Add Index management(cycling backups, switching to fresh index)
