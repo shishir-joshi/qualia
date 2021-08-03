@@ -6,6 +6,8 @@ and HNSWlib (https://github.com/nmslib/hnswlib) as approximate nearest neighbour
 
 The aim is to make it "Online" - to be able to add new documents in parallel with querying. 
 
+Check out notebooks/demo.ipynb for usage!
+
 TODO
 ====
 
